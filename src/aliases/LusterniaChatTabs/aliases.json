@@ -1,34 +1,34 @@
 [
   {
-    "name": "lct",
-    "regex": "^lct (save|load|font|fontSize|blink|blankLine|timestamp|show|hide)(?: (.+))?$"
+    "name": "act",
+    "regex": "^act (save|load|font|fontSize|blink|blankLine|timestamp|show|hide)(?: (.+))?$"
   },
   {
-    "name": "lct gag",
-    "regex": "^lct gag (.+)"
+    "name": "act gag",
+    "regex": "^act gag (.+)"
   },
   {
-    "name": "lct ungag",
-    "regex": "^lct ungag (.+)"
+    "name": "act ungag",
+    "regex": "^act ungag (.+)"
   },
   {
-    "name": "lct gagmob",
-    "regex": "^lct gagmob (.+)"
+    "name": "act gagmob",
+    "regex": "^act gagmob (.+)"
   },
   {
-    "name": "lct ungagmob",
-    "regex": "^lct ungagmob (.+)"
+    "name": "act ungagmob",
+    "regex": "^act ungagmob (.+)"
   },
   {
-    "name": "lct gaglist",
-    "regex": "^lct gaglist$"
+    "name": "act gaglist",
+    "regex": "^act gaglist$"
   },
   {
-    "name": "lct notify",
-    "regex": "^lct notify (.*)"
+    "name": "act notify",
+    "regex": "^act notify (.*)"
   },
   {
-    "name": "lct unnotify",
-    "regex": "^lct unnotify (.*)"
+    "name": "act unnotify",
+    "regex": "^act unnotify (.*)"
   }
 ]

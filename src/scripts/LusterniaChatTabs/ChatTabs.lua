@@ -1,14 +1,14 @@
-local EMCO = require("LusterniaChatTabs.emco")
-LusterniaChatTabs = LusterniaChatTabs or {}
-local default_constraints = {name = "LusterniaChatTabsContainer", x = "-25%", y = "-60%", width = "25%", height = "60%", attached = "right"}
-LusterniaChatTabs.emcoContainer = LusterniaChatTabs.emcoContainer or Adjustable.Container:new(default_constraints)
-LusterniaChatTabs.chatEMCO = LusterniaChatTabs.chatEMCO or EMCO:new({
-  name = "LusterniaChat",
+local EMCO = require("AchaeaChatTabs.emco")
+AchaeaChatTabs = AchaeaChatTabs or {}
+local default_constraints = {name = "AchaeaChatTabsContainer", x = "-25%", y = "-60%", width = "25%", height = "60%", attached = "right"}
+AchaeaChatTabs.emcoContainer = AchaeaChatTabs.emcoContainer or Adjustable.Container:new(default_constraints)
+AchaeaChatTabs.chatEMCO = AchaeaChatTabs.chatEMCO or EMCO:new({
+  name = "AchaeaChat",
   x = 0,
   y = 0,
   height = "100%",
   width = "100%",
-  consoles = {"All", "Local", "Org", "Guild", "Tells", "Squad", "Order", "Clans", "Misc"},
+  consoles = {"All", "Local", "City", "House", "Tells", "Group", "Order", "Clans", "Misc"},
   allTab = true,
   allTabName = "All",
   blankLine = true,
@@ -19,64 +19,62 @@ LusterniaChatTabs.chatEMCO = LusterniaChatTabs.chatEMCO or EMCO:new({
   fontSize = 12,
   font = "Ubuntu Mono",
   commandLine = true,
-}, LusterniaChatTabs.emcoContainer)
-local chatEMCO = LusterniaChatTabs.chatEMCO
-local filename = getMudletHomeDir() .. "/EMCO/LusterniaChat.lua"
+}, AchaeaChatTabs.emcoContainer)
+local chatEMCO = AchaeaChatTabs.chatEMCO
+local filename = getMudletHomeDir() .. "/EMCO/AchaeaChat.lua"
 if io.exists(filename) then
   chatEMCO:load()
 end
 chatEMCO:replayAll(10)
-function LusterniaChatTabs.echo(msg)
+function AchaeaChatTabs.echo(msg)
   msg = msg or ""
-  cecho(f"<green>LusterniaChatTabs: <reset>{msg}\n")
+  cecho(f"<green>AchaeaChatTabs: <reset>{msg}\n")
 end
 
-LusterniaChatTabs.gaggedMobs = {}
-local gaggedMobFile = getMudletHomeDir() .. "/LusterniaChatGaggedMobs.lua"
+AchaeaChatTabs.gaggedMobs = {}
+local gaggedMobFile = getMudletHomeDir() .. "/AchaeaChatGaggedMobs.lua"
 if io.exists(gaggedMobFile) then
-  table.load(gaggedMobFile, LusterniaChatTabs.gaggedMobs)
+  table.load(gaggedMobFile, AchaeaChatTabs.gaggedMobs)
 end
 
-function LusterniaChatTabs.loadGaggedMobs()
+function AchaeaChatTabs.loadGaggedMobs()
   if io.exists(gaggedMobFile) then
-    table.load(gaggedMobFile, LusterniaChatTabs.gaggedMobs)
+    table.load(gaggedMobFile, AchaeaChatTabs.gaggedMobs)
   end
 end
 
-function LusterniaChatTabs.saveGaggedMobs()
-  table.save(gaggedMobFile, LusterniaChatTabs.gaggedMobs)
+function AchaeaChatTabs.saveGaggedMobs()
+  table.save(gaggedMobFile, AchaeaChatTabs.gaggedMobs)
 end
 
-function LusterniaChatTabs.load()
-  LusterniaChatTabs.loadGaggedMobs()
+function AchaeaChatTabs.load()
+  AchaeaChatTabs.loadGaggedMobs()
   if io.exists(filename) then
     chatEMCO:load()
   end
 end
 
-function LusterniaChatTabs.save()
+function AchaeaChatTabs.save()
   chatEMCO:save()
-  LusterniaChatTabs.saveGaggedMobs()
+  AchaeaChatTabs.saveGaggedMobs()
 end
 
 local channelToTab = {
-  ct = "Org",
-  cgt = "Org",
-  gt = "Guild",
-  gts = "Guild",
-  gnt = "Guild",
-  sqt = "Squad",
+  ct = "City",
+  ht = "House",
+  hnt = "House",
+  gt = "Group",
   tell = "Tells",
   says = "Local",
   emotes = "Local",
   ot = "Order",
-  oto = "Order",
   ft = "Misc",
   newbie = "Misc",
   market = "Misc",
 }
 
 local function addNDBdecho(txt)
+  if svo then ndb = svo.ndb end
   local format = string.match(txt, "<%d+.->")
   local names = ndb.findnames(txt)
   if not names then
@@ -89,7 +87,7 @@ local function addNDBdecho(txt)
       color = color:gsub("<", "")
       color = color:gsub(">", "")
       if color == "" then -- they're a rogue, most likely, since the ndb has the name but returned "" as the color
-        debugc("LusterniaChatTabs got '' from ndb.getcolor for " .. name .. ". We are assuming they are rogue and looking up the correct color in ndb.conf or mm.conf. If it can't find either it will fallback to white")
+        debugc("AchaeaChatTabs got '' from ndb.getcolor for " .. name .. ". We are assuming they are rogue and looking up the correct color in ndb.conf or mm.conf. If it can't find either it will fallback to white")
         color = ndb.roguescolor
         color = color or (mm and mm.conf and mm.conf.roguescolor)
         color = color or "white"
@@ -104,7 +102,7 @@ end
 
 local function chatCapture()
   local info = gmcp.Comm.Channel.Text
-  local gaggedMobs = LusterniaChatTabs.gaggedMobs
+  local gaggedMobs = AchaeaChatTabs.gaggedMobs
   local talker = info.talker
   if gaggedMobs[talker] then
     return
@@ -132,16 +130,16 @@ local function chatCapture()
   chatEMCO:decho(channel, txt)
 end
 
-if LusterniaChatTabs.chatCaptureEventID then
-  killAnonymousEventHandler(LusterniaChatTabs.chatCaptureEventID)
+if AchaeaChatTabs.chatCaptureEventID then
+  killAnonymousEventHandler(AchaeaChatTabs.chatCaptureEventID)
 end
-LusterniaChatTabs.chatCaptureEventID = registerAnonymousEventHandler("gmcp.Comm.Channel.Text", chatCapture)
+AchaeaChatTabs.chatCaptureEventID = registerAnonymousEventHandler("gmcp.Comm.Channel.Text", chatCapture)
 
 local function startGMCPChat()
-  cecho("<green>LusterniaChatTabs:<reset> Turning on GMCP comm channels\n")
+  cecho("<green>AchaeaChatTabs:<reset> Turning on GMCP comm channels\n")
   sendGMCP([[Core.Supports.Add ["Comm.Channel 1"] ]])
 end
 
-if not LusterniaChatTabs.loginHandler then
-  LusterniaChatTabs.loginHandler = registerAnonymousEventHandler("gmcp.Char.Name", startGMCPChat)
+if not AchaeaChatTabs.loginHandler then
+  AchaeaChatTabs.loginHandler = registerAnonymousEventHandler("gmcp.Char.Name", startGMCPChat)
 end

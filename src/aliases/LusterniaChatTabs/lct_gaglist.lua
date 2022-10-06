@@ -1,6 +1,6 @@
-local lecho = LusterniaChatTabs.echo
-local gaggedMobs = table.keys(LusterniaChatTabs.gaggedMobs)
-local gaggedLines = table.keys(LusterniaChatTabs.chatEMCO.gags)
+local lecho = AchaeaChatTabs.echo
+local gaggedMobs = table.keys(AchaeaChatTabs.gaggedMobs)
+local gaggedLines = table.keys(AchaeaChatTabs.chatEMCO.gags)
 table.sort(gaggedMobs)
 table.sort(gaggedLines)
 

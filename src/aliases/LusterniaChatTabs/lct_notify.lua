@@ -1,6 +1,6 @@
 local tabName = matches[2]:title()
-local echo = LusterniaChatTabs.echo
-local ok = LusterniaChatTabs.chatEMCO:addNotifyTab(tabName)
+local echo = AchaeaChatTabs.echo
+local ok = AchaeaChatTabs.chatEMCO:addNotifyTab(tabName)
 
 if ok then
   echo(f"Enabled OS notifications for tab {tabName}")

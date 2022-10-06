@@ -1,6 +1,6 @@
 local tabName = matches[2]:title()
-local echo = LusterniaChatTabs.echo
-local ok = LusterniaChatTabs.chatEMCO:removeNotifyTab(tabName)
+local echo = AchaeaChatTabs.echo
+local ok = AchaeaChatTabs.chatEMCO:removeNotifyTab(tabName)
 
 if ok then
   echo(f"Disabled OS notifications for tab {tabName}")

@@ -6,20 +6,20 @@ if not table.contains(valid_options, option) then
   lecho("Tried to change a config value that does not exist: valid options are " .. valid_options_string)
   return
 end
-local chatEMCO = LusterniaChatTabs.chatEMCO
-local lecho = LusterniaChatTabs.echo
-local EMCO = require("LusterniaChatTabs.emco")
-local gaggedMobFile = getMudletHomeDir() .. "LusterniaChatGaggedMobs.lua"
+local chatEMCO = AchaeaChatTabs.chatEMCO
+local lecho = AchaeaChatTabs.echo
+local EMCO = require("AchaeaChatTabs.emco")
+local gaggedMobFile = getMudletHomeDir() .. "AchaeaChatGaggedMobs.lua"
 if option == "save" then
-  LusterniaChatTabs.save()
+  AchaeaChatTabs.save()
   lecho("Options saved")
 elseif option == "load" then
-  LusterniaChatTabs.load()
+  AchaeaChatTabs.load()
   lecho("Options loaded")
 elseif option == "show" then
-  LusterniaChatTabs.emcoContainer:show()
+  AchaeaChatTabs.emcoContainer:show()
 elseif option == "hide" then
-  LusterniaChatTabs.emcoContainer:hide()
+  AchaeaChatTabs.emcoContainer:hide()
 else
   if value == nil then
     lecho("You need to provide a value when trying to configure things")
