@@ -1,7 +1,7 @@
 {
-  "package": "LusterniaChatTabs",
-  "version": "2.0.1",
-  "author": "Demonnic",
-  "title": "Chat tabs for Lusternia",
+  "package": "AchaeaChatTabs",
+  "version": "1.0.0",
+  "author": "Erikka, Demonnic",
+  "title": "Chat tabs for Achaea",
   "outputFile": true
 }
