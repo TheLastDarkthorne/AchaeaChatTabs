@@ -30,10 +30,10 @@ Will start on the right side, attached to the right border. Resize, move, adjust
   * lists the mobs and lines being gagged in the chat tabs.
 * `act gagmob <Lua pattern>`
   * add a Lua pattern to check speakers against. See [this tutorial from lua-users.org](http://lua-users.org/wiki/PatternsTutorial) for more information. If the speaker matches the pattern, anything they say or emote on any channel will be gagged from the tabbed chat consoles. Does not affect the main window. Uses gmcp.Comm.Channel.Text.talker to make the determination.
-    * `act gagmob Abeytu`
-      * gags any mob with "Abeytu" in the speaker name in gmcp.
+    * `act gagmob Vellis`
+      * gags any mob with "Vellis" in the speaker name in gmcp.
     * `act gagmob a sick .+ child`
-      * gags `a sick human child` and `a sick merian child` and `a sick kepheran child` etc
+      * gags `a sick human child` and `a sick tsol child` and `a sick mhun child` etc
 * `act ungagmob <Lua pattern>`
   * Removes a lua pattern from the gagged mobs list.
 * `act gag <Lua pattern>`
@@ -48,5 +48,5 @@ Will start on the right side, attached to the right border. Resize, move, adjust
       * sends OS notifications whenever something comes in on the Guild tab
 * `act unnotify <tab name>`
   * Stop sending OS notifications for a tab
-   * `act unnotify guild`
-    * stop sending OS notifications when something comes in on the Guild tab
+   * `act unnotify house`
+    * stop sending OS notifications when something comes in on the House tab
