@@ -14,7 +14,16 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-
+      
+      - name: Get version
+        # id must be specified to retrieve the output of the step
+        id: version-step
+        uses: michmich112/extract-version@main
+        with:
+          # specify here the path to your version file (e.g. package.json, pom.xml...)
+          version-file: mfile
+          schema: major.minor.build
+          
       - name: Muddle
         uses: demonnic/build-with-muddler@v1.4
       
@@ -23,3 +32,26 @@ jobs:
         with:
           name: AchaeaChatTabs.mpackage
           path: build/*.mpackage
+          
+      - name: release
+        uses: actions/create-release@v1.1.4
+        id: create_release
+        with:
+          draft: false
+          prerelease: false
+          release_name: ${{ steps.version-step.outputs.version }}
+          tag_name: ${{ steps.version-step.outputs.version }}
+          #body_path: CHANGELOG.md
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          
+      - name: Upload Release Asset
+        id: upload-release-asset 
+        uses: actions/upload-release-asset@v1.0.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+          asset_path: build/AchaeaChatTabs.mpackage
+          asset_name: AchaeaChatTabs.mpackage
+          asset_content_type: application/zip
