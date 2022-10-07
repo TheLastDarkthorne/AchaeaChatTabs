@@ -61,9 +61,11 @@ end
 
 local channelToTab = {
   ct = "City",
+  art = "City",
   ht = "House",
   hnt = "House",
   gt = "Group",
+  pt = "Group",
   tell = "Tells",
   says = "Local",
   emotes = "Local",
@@ -74,7 +76,6 @@ local channelToTab = {
 }
 
 local function addNDBdecho(txt)
-  if svo then ndb = svo.ndb end
   local format = string.match(txt, "<%d+.->")
   local names = ndb.findnames(txt)
   if not names then
