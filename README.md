@@ -1,6 +1,6 @@
 # Achaea Chat Tabs
 
-Set of chat tabs similarly laid out to KaiUI, but using my latest version of EMCO which provides for automatic logging among other things, and not part of an all or nothing UI.
+Set of chat tabs similarly laid out to KaiUI, but using demonnic's latest version of EMCO which provides for automatic logging among other things, and not part of an all or nothing UI.
 
 By default, the logs are kept in `getMudletHomeDir() .. "/log/Chatbox/YYYY/MM/DD/tabname.html"`
 
