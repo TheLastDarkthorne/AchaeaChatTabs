@@ -62,7 +62,7 @@ end
 
 local channelToTab = {
   ct = "City",
-  armytell = "City",
+  art = "City",
   ht = "House",
   hnt = "House",
   gt = "Group",
@@ -73,7 +73,7 @@ local channelToTab = {
   emotes = "Local",
   ot = "Order",
   newbie = "Misc",
-  market = "Misc",
+  market = "Misc"
 }
 
 local function addNDBdecho(txt)
