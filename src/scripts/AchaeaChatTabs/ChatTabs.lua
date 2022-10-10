@@ -4,6 +4,7 @@ local default_constraints = {name = "AchaeaChatTabsContainer", x = "-25%", y = "
 AchaeaChatTabs.emcoContainer = AchaeaChatTabs.emcoContainer or Adjustable.Container:new(default_constraints)
 AchaeaChatTabs.chatEMCO = AchaeaChatTabs.chatEMCO or EMCO:new({
   name = "AchaeaChat",
+  title = "AchaeaChat",
   x = 0,
   y = 0,
   height = "100%",
@@ -61,7 +62,7 @@ end
 
 local channelToTab = {
   ct = "City",
-  art = "City",
+  armytell = "City",
   ht = "House",
   hnt = "House",
   gt = "Group",
