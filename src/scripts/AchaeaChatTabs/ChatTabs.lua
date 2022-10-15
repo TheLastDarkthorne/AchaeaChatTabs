@@ -62,7 +62,7 @@ end
 
 local channelToTab = {
   ct = "City",
-  art = "City",
+  armytell = "City",
   ht = "House",
   hnt = "House",
   gt = "Group",
