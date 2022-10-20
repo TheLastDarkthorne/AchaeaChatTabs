@@ -43,7 +43,7 @@ Will start on the right side, attached to the right border. Resize, move, adjust
 * `act ungag <Lua pattern>`
   * removes a lua pattern from the gagged lines list.
 * `act notify <tab name>`
-  * will send OS notifications when somethings is written to the tab specified
+  * will send OS notifications when somethings is written to the tab specified. If a tab is not provided, will give a list of tabs that currently have notify enabled.
     * `act notify guild`
       * sends OS notifications whenever something comes in on the Guild tab
 * `act unnotify <tab name>`
