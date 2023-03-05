@@ -1,4 +1,4 @@
-local echo = demonnic.helpers.echo
+local echo = AchaeaChatTabs.helpers.echo
 local aliases = {
   ["act save"] = "saves your config to disk",
   ["act load"] = "loads your config from disk",
