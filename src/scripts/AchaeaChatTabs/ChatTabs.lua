@@ -116,6 +116,11 @@ function AchaeaChatTabs.helpers.setConfig(cfg, val)
   return true
 end
 
+function AchaeaChatTabs.helpers.echo(msg)
+  msg = msg or ""
+  cecho(f "<green>EMCO Chat: <reset>{msg}\n")
+end
+
 function AchaeaChatTabs.helpers.save()
   chatEMCO:save()
   table.save(confFile, AchaeaChatTabs.config)
