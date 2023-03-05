@@ -1,6 +1,26 @@
 local EMCO = require("AchaeaChatTabs.emco")
 AchaeaChatTabs = AchaeaChatTabs or {}
+local defaultConfig = {activeColor = "black", inactiveColor = "black", activeBorder = "green", activeText = "green", inactiveText = "grey", background = "black", windowBorder = "green"}
 local default_constraints = {name = "AchaeaChatTabsContainer", x = "-25%", y = "-60%", width = "25%", height = "60%", attached = "right"}
+local baseStyle = Geyser.StyleSheet:new(f [[
+  border-width: 2px; 
+  border-style: solid; 
+]])
+local activeStyle = Geyser.StyleSheet:new(f [[
+  border-color: {AchaeaChatTabs.config.activeBorder};
+  background-color: {AchaeaChatTabs.config.activeColor};
+]], baseStyle)
+local inactiveStyle = Geyser.StyleSheet:new(f [[
+  border-color: {AchaeaChatTabs.config.inactiveColor};
+  background-color: {AchaeaChatTabs.config.inactiveColor};
+]], baseStyle)
+local adjLabelStyle = Geyser.StyleSheet:new(f[[
+  background-color: rgba(0,0,0,100%);
+  border: 4px double;
+  border-color: {AchaeaChatTabs.config.windowBorder};
+  border-radius: 4px;]])
+
+
 AchaeaChatTabs.emcoContainer = AchaeaChatTabs.emcoContainer or Adjustable.Container:new(default_constraints)
 AchaeaChatTabs.chatEMCO = AchaeaChatTabs.chatEMCO or EMCO:new({
   name = "AchaeaChat",
@@ -21,8 +41,11 @@ AchaeaChatTabs.chatEMCO = AchaeaChatTabs.chatEMCO or EMCO:new({
   font = "Ubuntu Mono",
   commandLine = true,
 }, AchaeaChatTabs.emcoContainer)
+
 local chatEMCO = AchaeaChatTabs.chatEMCO
 local filename = getMudletHomeDir() .. "/EMCO/AchaeaChat.lua"
+local confFile = getMudletHomeDir() .. "/EMCO/AchaeaChatOptions.lua"
+
 if io.exists(filename) then
   chatEMCO:load()
 end
@@ -30,6 +53,86 @@ chatEMCO:replayAll(10)
 function AchaeaChatTabs.echo(msg)
   msg = msg or ""
   cecho(f"<green>AchaeaChatTabs: <reset>{msg}\n")
+end
+
+function AchaeaChatTabs.helpers.resetToDefaults()
+  default_constraints.adjLabelstyle = adjLabelStyle:getCSS()
+  AchaeaChatTabs.container = AchaeaChatTabs.container or Adjustable.Container:new(default_constraints)
+  AchaeaChatTabs.config = defaultConfig
+  AchaeaChatTabs.chat = EMCO:new({
+    name = "EMCOPrebuiltChat",
+    x = 0,
+    y = 0,
+    height = "100%",
+    width = "100%",
+    consoles = {"All", "Local", "City", "OOC", "Tells", "Group"},
+    allTab = true,
+    allTabName = "All",
+    blankLine = true,
+    blink = true,
+    bufferSize = 10000,
+    deleteLines = 500,
+    timestamp = true,
+    fontSize = 12,
+    font = "Ubuntu Mono",
+    consoleColor = AchaeaChatTabs.config.background,
+    activeTabCSS = activeStyle:getCSS(),
+    inactiveTabCSS = inactiveStyle:getCSS(),
+    activeTabFGColor = AchaeaChatTabs.config.activeText,
+    inactiveTabFGColor = AchaeaChatTabs.config.inactiveText,
+    gap = 3,
+    commandLine = true,
+  }, AchaeaChatTabs.container)
+  chatEMCO = AchaeaChatTabs.chat
+  AchaeaChatTabs.helpers.retheme()
+end
+
+function AchaeaChatTabs.helpers.retheme()
+  activeStyle:set("background-color", AchaeaChatTabs.config.activeColor)
+  activeStyle:set("border-color", AchaeaChatTabs.config.activeBorder)
+  inactiveStyle:set("background-color", AchaeaChatTabs.config.inactiveColor)
+  inactiveStyle:set("border-color", AchaeaChatTabs.config.inactiveColor)
+  adjLabelStyle:set("border-color", AchaeaChatTabs.config.windowBorder)
+  local als = adjLabelStyle:getCSS()
+  AchaeaChatTabs.container.adjLabelstyle = als
+  AchaeaChatTabs.container.adjLabel:setStyleSheet(als)
+  chatEMCO.activeTabCSS = activeStyle:getCSS()
+  chatEMCO.inactiveTabCSS = inactiveStyle:getCSS()
+  chatEMCO:setActiveTabFGColor(AchaeaChatTabs.config.activeText)
+  chatEMCO:setInactiveTabFGColor(AchaeaChatTabs.config.inactiveText)
+  chatEMCO:setConsoleColor(AchaeaChatTabs.config.background)
+  chatEMCO:switchTab(chatEMCO.currentTab)
+end
+
+function AchaeaChatTabs.helpers.setConfig(cfg, val)
+  local validOptions = table.keys(AchaeaChatTabs.config)
+  if not table.contains(validOptions, cfg) then
+    return nil, f"invalid option: valid options are {table.concat(validOptions, ', ')}"
+  end
+  AchaeaChatTabs.config[cfg] = val
+  AchaeaChatTabs.helpers.retheme()
+  return true
+end
+
+function AchaeaChatTabs.helpers.save()
+  chatEMCO:save()
+  table.save(confFile, AchaeaChatTabs.config)
+  AchaeaChatTabs.container:save()
+end
+
+function AchaeaChatTabs.helpers.load()
+  if io.exists(confFile) then
+    local conf = {}
+    table.load(confFile, conf)
+    AchaeaChatTabs.config = table.update(AchaeaChatTabs.config, conf)
+  end
+  if io.exists(filename) then
+    chatEMCO:hide()
+    chatEMCO:load()
+    chatEMCO:show()
+  end
+  AchaeaChatTabs.container:load()
+  AchaeaChatTabs.helpers.retheme()
 end
 
 AchaeaChatTabs.gaggedMobs = {}

@@ -7,7 +7,8 @@ By default, the logs are kept in `getMudletHomeDir() .. "/log/Chatbox/YYYY/MM/DD
 Will start on the right side, attached to the right border. Resize, move, adjust how you see fit.
 
 ## Configuration Alias
-
+* `act usage`
+  * prints a list of aliases and their usage in the main window
 * `act hide`
   * hides the chat tabs
 * `act show`
@@ -50,3 +51,7 @@ Will start on the right side, attached to the right border. Resize, move, adjust
   * Stop sending OS notifications for a tab
    * `act unnotify house`
     * stop sending OS notifications when something comes in on the House tab
+* `act color <option> <color>`
+  * customize the colors of the chat window
+   * `act color usage`
+    * prints the color alias usage information

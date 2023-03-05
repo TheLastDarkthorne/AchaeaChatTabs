@@ -30,5 +30,21 @@
   {
     "name": "act unnotify",
     "regex": "^act unnotify (.*)"
+  },
+  {
+    "name": "act color",
+    "regex": "^act color (\\w+) (.+)"
+  },
+  {
+    "name": "act color usage",
+    "regex": "^act color$"
+  },
+  {
+    "name": "act usage",
+    "regex": "^act( usage)?$"
+  },
+  {
+    "name": "act update",
+    "regex": "^act update$"
   }
 ]

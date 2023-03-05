@@ -1,4 +1,4 @@
-local valid_options = {"font", "fontSize", "blink", "blankLine", "timestamp", "save", "load", "show", "hide"}
+local valid_options = {"font", "fontSize", "blink", "blankLine", "timestamp", "save", "load", "show", "hide", "commandLine"}
 local valid_options_string = table.concat(valid_options)
 local option = matches[2]
 local value = matches[3]
