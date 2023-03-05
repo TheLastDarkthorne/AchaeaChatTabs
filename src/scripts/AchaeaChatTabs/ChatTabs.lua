@@ -1,5 +1,7 @@
 local EMCO = require("AchaeaChatTabs.emco")
 AchaeaChatTabs = AchaeaChatTabs or {}
+AchaeaChatTabs.helpers = AchaeaChatTabs.helpers or {}
+AchaeaChatTabs.config = AchaeaChatTabs.config or {}
 local defaultConfig = {activeColor = "black", inactiveColor = "black", activeBorder = "green", activeText = "green", inactiveText = "grey", background = "black", windowBorder = "green"}
 local default_constraints = {name = "AchaeaChatTabsContainer", x = "-25%", y = "-60%", width = "25%", height = "60%", attached = "right"}
 local baseStyle = Geyser.StyleSheet:new(f [[
