@@ -152,7 +152,7 @@ function AchaeaChatTabs.load()
   end
   ]]
   AchaeaChatTabs.emcoContainer:load()
-  --AchaeaChatTabs.helpers.retheme()
+  AchaeaChatTabs.helpers.retheme()
 end
 
 function AchaeaChatTabs.save()
