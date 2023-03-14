@@ -25,6 +25,8 @@ Will start on the right side, attached to the right border. Resize, move, adjust
   * set whether it should blink
 * `act timestamp <true|false>`
   * set whether it should add a timestamp at the front
+* `act commandLine <true|false>`
+  * set whether it should show command lines
 * `act blankLine`
   * set whether it should automatically add a newline to things echoed.
 * `act gaglist`
@@ -59,3 +61,6 @@ Will start on the right side, attached to the right border. Resize, move, adjust
   * updates the package to the latest version
 * `act reset|act reset color`
   * resets the chat window to defaults/resets chat colors only (remember to 'act save' after to save the defaults into the config file)
+
+## Power Users
+EMCO is a highly customizable chat script with a plethora of options to make it better/smarter/good looking that are by no means not limited by only these aliases! If you want to further customize your chat box and its behavior refer to the [EMCO API](https://demonnic.github.io/mdk/current/classes/EMCO.html).

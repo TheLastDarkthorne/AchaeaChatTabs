@@ -1,7 +1,7 @@
 [
   {
     "name": "act",
-    "regex": "^act (save|load|font|fontSize|blink|blankLine|timestamp|show|hide)(?: (.+))?$"
+    "regex": "^act (save|load|font|fontSize|blink|blankLine|timestamp|show|hide|commandLine)(?: (.+))?$"
   },
   {
     "name": "act gag",

@@ -32,7 +32,7 @@ else
     else
       chatEMCO:setFont(value)
     end
-  elseif table.contains({"blink", "blankLine", "timestamp"}, option) then
+  elseif table.contains({"blink", "blankLine", "timestamp", "commandLine"}, option) then
     value = EMCO:fuzzyBoolean(value)
     if value then
       if option == "timestamp" then
@@ -42,7 +42,7 @@ else
       elseif option == "blink" then
         chatEMCO:enableBlink()
       elseif option == "commandLine" then
-        chatEMCO:enableCommandLine()
+        chatEMCO:enableAllCmdLines()
       end
     else
       if option == "timestamp" then
@@ -52,7 +52,7 @@ else
       elseif option == "blink" then
         chatEMCO:disableBlink()
       elseif option == "commandLine" then
-        chatEMCO:disableCommandLine()
+        chatEMCO:disableAllCmdLines()
       end
     end
   else

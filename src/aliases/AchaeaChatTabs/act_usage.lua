@@ -7,6 +7,7 @@ local aliases = {
   ["act blink <true|false>"] = "turn blinking on/off",
   ["act blankLine <true|false>"] = "turn inserting a blank line between messages on/off",
   ["act timestamp <true|false>"] = "turn timestamps on/off",
+  ["act commandLine <true|false>"] = "turn command lines on/off",
   ["act show"] = "show AchaeaChatTabs",
   ["act hide"] = "hide AchaeaChatTabs",
   ["act gaglist"] = "prints out the list of gag patterns",
