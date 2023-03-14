@@ -1,3 +1,4 @@
+local lecho = AchaeaChatTabs.echo
 local valid_options = {"font", "fontSize", "blink", "blankLine", "timestamp", "save", "load", "show", "hide", "commandLine"}
 local valid_options_string = table.concat(valid_options)
 local option = matches[2]
@@ -7,7 +8,6 @@ if not table.contains(valid_options, option) then
   return
 end
 local chatEMCO = AchaeaChatTabs.chatEMCO
-local lecho = AchaeaChatTabs.echo
 local EMCO = require("AchaeaChatTabs.emco")
 local gaggedMobFile = getMudletHomeDir() .. "AchaeaChatGaggedMobs.lua"
 if option == "save" then
