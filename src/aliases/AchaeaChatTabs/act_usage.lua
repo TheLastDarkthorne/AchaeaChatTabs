@@ -16,7 +16,7 @@ local aliases = {
   ["act unnotify <tabName>"] = "turn off OS notifications for tabName",
   ["act color <option> <value>"] = "used to change the colors for the active/inactive tab, and the background color for the consoles. 'act color' with no options will print out available options",
   ["act update"] = "updates the package to latest version",
-  ["act reset|act reset color"] = "resets the chat to defaults/resets chat colors only"
+  ["act reset|act reset color"] = "resets the chat window to defaults/resets chat colors only (remember to 'act save' after to save the defaults into the config file)"
 }
 
 echo("\nAvailable aliases for AchaeaChatTabs")

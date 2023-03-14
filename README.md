@@ -7,7 +7,7 @@ By default, the logs are kept in `getMudletHomeDir() .. "/log/Chatbox/YYYY/MM/DD
 Will start on the right side, attached to the right border. Resize, move, adjust how you see fit.
 
 ## Configuration Alias
-* `act usage`
+* `act|act usage`
   * prints a list of aliases and their usage in the main window
 * `act hide`
   * hides the chat tabs
@@ -55,3 +55,7 @@ Will start on the right side, attached to the right border. Resize, move, adjust
   * customize the colors of the chat window
    * `act color usage`
     * prints the color alias usage information
+* `act update`
+  * updates the package to the latest version
+* `act reset|act reset color`
+  * resets the chat window to defaults/resets chat colors only (remember to 'act save' after to save the defaults into the config file)
