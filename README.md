@@ -63,4 +63,4 @@ Will start on the right side, attached to the right border. Resize, move, adjust
   * resets the chat window to defaults/resets chat colors only (remember to 'act save' after to save the defaults into the config file)
 
 ## Power Users
-EMCO is a highly customizable chat script with a plethora of options to make it better/smarter/good looking that are by no means not limited by only these aliases! If you want to further customize your chat box and its behavior refer to the [EMCO API](https://demonnic.github.io/mdk/current/classes/EMCO.html).
+EMCO is a highly customizable chat script with a plethora of options to make it better/smarter/good looking that are by no means limited by only these aliases! If you want to further customize your chat box and its behavior refer to the [EMCO API](https://demonnic.github.io/mdk/current/classes/EMCO.html).
