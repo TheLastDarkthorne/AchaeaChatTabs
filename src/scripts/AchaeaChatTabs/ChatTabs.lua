@@ -58,11 +58,11 @@ function AchaeaChatTabs.resetChat(onlycolors)
     AchaeaChatTabs.helpers.retheme()
   else
     AchaeaChatTabs.chatEMCO = nil
-    AchaeaChatTabs.emcoContainer = Adjustable.Container:new(default_constraints)
+    AchaeaChatTabs.emcoContainer = nil
     AchaeaChatTabs.config = defaultConfig
     AchaeaChatTabs.createChat()
     AchaeaChatTabs.helpers.retheme()
-
+    AchaeaChatTabs.emcoContainer:unlockContainer()
   end
 end
 
@@ -70,12 +70,14 @@ local chatEMCO = AchaeaChatTabs.chatEMCO
 local filename = getMudletHomeDir() .. "/EMCO/AchaeaChat.lua"
 local confFile = getMudletHomeDir() .. "/EMCO/AchaeaChatOptions.lua"
 
+--[[
 if io.exists(filename) then
   chatEMCO:load()
 end
 if io.exists(confFile) then
   AchaeaChatTabs.emcoContainer:load()
 end
+]]
 
 chatEMCO:replayAll(10)
 function AchaeaChatTabs.echo(msg)
@@ -100,7 +102,7 @@ function AchaeaChatTabs.helpers.retheme()
   chatEMCO:adjustTabBackgrounds()
   chatEMCO:switchTab(chatEMCO.currentTab)
   --AchaeaChatTabs.chatEMCO = nil
-  --AchaeaChatTabs.createChat()
+  AchaeaChatTabs.createChat()
 end
 
 function AchaeaChatTabs.helpers.setConfig(cfg, val)
@@ -197,12 +199,18 @@ local function addNDBdecho(txt)
         color = color or "white"
       end
       color = string.format("<%d,%d,%d>", unpack(color_table[color]))
-      txt = txt:gsub(name, color .. name .. format)
+      if format then
+        txt = txt:gsub(name, color .. name .. format)
+      else
+        txt = txt:gsub(name, color .. name .. string.format("<%d,%d,%d>", unpack(color_table["grey"])))
+      end
       done[name] = true
     end
   end
   return txt
 end
+
+AchaeaChatTabs.addNDBdecho = addNDBdecho
 
 local function chatCapture()
   local info = gmcp.Comm.Channel.Text
