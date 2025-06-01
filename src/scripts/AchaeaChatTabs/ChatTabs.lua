@@ -177,6 +177,8 @@ local channelToTab = {
   emotes = "Local",
   ot = "Order",
   newbie = "Misc",
+  deathsight = "Misc",
+  shouts = "Misc",
   market = "Misc"
 }
 
